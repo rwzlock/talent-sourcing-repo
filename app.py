@@ -36,6 +36,7 @@ def setup():
 @app.route("/")
 def index():
     """Return the dashboard hompage"""
+    #Blank homepage, view /database to see minimal working example
     return render_template('index.html')
 
 @app.route('/database')
