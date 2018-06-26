@@ -11,6 +11,9 @@ Plotly.d3.json(dropdown_url, function(error, response) {
     var jobs = data[0]["x"]
     for(var i=0;i<jobs.length-1;i++) {
         //Create a dropdown option for each job name in the data, if it has a space, replace with underscore
+        
+        //Sample Code, You can edit anything in this for loop in order to create the drop down as long as the link
+        //in the dropdown goes to /jobs/Laboratory_Technician if the job is "Laboratory Technician"
         var currentOption = document.createElement('option');
         currentOption.text = jobs[i];
         currentOption.value = "/jobs/"+jobs[i].replace(" ", "_");
