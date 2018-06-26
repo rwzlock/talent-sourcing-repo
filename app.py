@@ -39,22 +39,105 @@ def index():
     #Blank homepage, view /database to see minimal working example
     return render_template('index.html')
 
-@app.route('/database')
-def samples_sample():
-    """Proof of completed database and Flask connection"""
-    #Query database for first 10 results
-    results = db.session.query(Employees.EmployeeNumber, Employees.Age).\
-        limit(10).all()
-    
-    employee_number = [result[0] for result in results]
-    age = [result[1] for result in results]
-    
-    first_trace = {
-        "Employee Number": employee_number,
-        "AGE": age
+@app.route('/gender')
+def gender():
+    """Gender Statistics for Overall Data"""
+    #Query database for all female employees
+    results = db.session.query(Employees.Gender).\
+        filter(Employees.Gender=="Female").all()
+    #Query database for all male employees
+    results1 = db.session.query(Employees.Gender).\
+        filter(Employees.Gender=="Male").all()
+    #create lists
+    female = [result[0] for result in results]
+    male = [result[0] for result in results1]
+    #the length of the above lists is the number of males and females
+    female_count = len(female)
+    male_count = len(male)
+    #Create and return trace
+    gender_trace = {
+        "labels": ["Female", "Male"],
+        "values": [female_count, male_count],
+        "type": "pie"
     }
-    return jsonify(first_trace)
+    return jsonify(gender_trace)
+
+@app.route('/jobrole')
+def jobrole():
+    """Number of employees in each job"""
+    #Query database for all job roles
+    results = db.session.query(Employees.JobRole).all()
+    #Create a list of all job roles
+    joblist = [result[0] for result in results]
+    #Create a second list with all duplicates deleted
+    jobroles = list(set(joblist))
+    #Create a list to hold the employee counts for each job role
+    jobcounts = []
+    #Iterating through each job role in the unique jobs list
+    for jobrole in jobroles:
+        counter = 0
+        #If the job role in the list matches the job role we are searching for, add one to counter
+        for x in range(0, len(joblist)):
+            if(str(joblist[x]) == str(jobrole)):
+                counter=counter+1
+        #Add the count of jobs in a given role to the jobcounts list
+        jobcounts.append(counter)
+    #Create and return trace
+    jobs_trace = {
+        "x": jobroles,
+        "y": jobcounts,
+        "type": "bar"
+    }
+    return jsonify(jobs_trace)
+
+@app.route('/department')
+def department():
+    """Number of employees in each department"""
+    #Same query method as used in the /jobroles route
+    results = db.session.query(Employees.Department).all()
+    deptlist = [result[0] for result in results]
+    depts = list(set(deptlist))
+    deptcounts = []
+    for dept in depts:
+        counter = 0
+        for x in range(0, len(deptlist)):
+            if(str(deptlist[x]) == str(dept)):
+                counter=counter+1
+        deptcounts.append(counter)
+    
+    depts_trace = {
+        "x": depts,
+        "y": deptcounts,
+        "type": "bar"
+    }
+    return jsonify(depts_trace)
+
+@app.route('/satisfaction')
+def jobsatisfaction():
+    """Job satisfaction by department"""
+    #Query departments and create a list of unique departments
+    results = db.session.query(Employees.Department).all()
+    deptlist = [result[0] for result in results]
+    depts = list(set(deptlist))
+    #Create a list to hold average job satisfaction
+    deptsatisfaction_list = []
+    #Iterate through each department and calculate average satisfaction by department
+    for dept in depts:
+        results1 = db.session.query(Employees.JobSatisfaction).\
+            filter(Employees.Department==str(dept)).all()
+        satlist = [result[0] for result in results1]
+        avg_satisfaction = sum(satlist)/len(satlist)
+        deptsatisfaction_list.append(avg_satisfaction)
+    print(len(depts))
+    print(len(deptsatisfaction_list))
+    #Return dictionary with departments as the x and average satisfaction as the y
+    sats_trace = {
+        "x": depts,
+        "y": deptsatisfaction_list,
+        "type": "bar"
+    }
+    return jsonify(sats_trace)
 
 #Run the app. debug=True is essential to be able to rerun the server any time changes are saved to the Python file
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=5019)
