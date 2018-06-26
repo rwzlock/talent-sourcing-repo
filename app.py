@@ -144,6 +144,29 @@ def jobsatisfaction():
     }
     return jsonify(sats_trace)
 
+@app.route('/table')
+def table():
+    Genders = db.session.query(Employees.Gender).all()
+    GenderList = [Gender[0] for Gender in Genders]
+    Departments = db.session.query(Employees.Department).all()
+    DepartmentList = [Department[0] for Department in Departments]
+    Educations = db.session.query(Employees.Education).all()
+    EducationList = [Education[0] for Education in Educations]
+    EnvironmentSatisfactions = db.session.query(Employees.EnvironmentSatisfaction).all()
+    EnvironmentSatisfactionList = [EnvironmentSatisfaction[0] for EnvironmentSatisfaction in EnvironmentSatisfactions]
+    Ages = db.session.query(Employees.Age).all()
+    AgeList = [Age[0] for Age in Ages]
+
+    DataDict = {
+        "Gender": GenderList,
+        "Department": DepartmentList,
+        "Education": EducationList,
+        "Satisfaction": EnvironmentSatisfactionList,
+        "Age": AgeList
+    }
+
+    return jsonify(DataDict)
+
 #Run the app. debug=True is essential to be able to rerun the server any time changes are saved to the Python file
 if __name__ == "__main__":
     app.run(debug=True, port=5021)
