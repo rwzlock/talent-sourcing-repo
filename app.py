@@ -36,8 +36,14 @@ def setup():
 @app.route("/")
 def index():
     """Return the dashboard hompage"""
-    #Blank homepage, view /database to see minimal working example
+    #Homepage with Plotly visualizations
     return render_template('index.html')
+
+@app.route("/jobsummary")
+def jobsummary():
+    """Return second page that has a summary of job statistics"""
+    #Page 2 with dropdown and plotly summaries
+    return render_template('jobs.html')
 
 @app.route('/gender')
 def gender():
@@ -140,4 +146,4 @@ def jobsatisfaction():
 
 #Run the app. debug=True is essential to be able to rerun the server any time changes are saved to the Python file
 if __name__ == "__main__":
-    app.run(debug=True, port=5019)
+    app.run(debug=True, port=5021)

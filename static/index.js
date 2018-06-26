@@ -7,8 +7,6 @@ Plotly.d3.json(gender_url, function(error, response) {
     if (error) return console.warn(error);
     var data = [response];
     console.log(response)
-    //console.log(response[0]["labels"])
-    //console.log(response[0]["values"])
     var layout = { margin: { t: 30, b:100 },
                    title: "Gender Statistics",
                    xaxis: { title: "Gender"},
@@ -20,8 +18,6 @@ Plotly.d3.json(jobroles_url, function(error, response) {
     if (error) return console.warn(error);
     var data = [response];
     console.log(response)
-    //console.log(response[0]["labels"])
-    //console.log(response[0]["values"])
     var layout = { margin: { t: 30, b:100 },
                    title: "Job Role Statistics",
                    xaxis: { title: "Job Role"},
@@ -33,8 +29,6 @@ Plotly.d3.json(depts_url, function(error, response) {
     if (error) return console.warn(error);
     var data = [response];
     console.log(response)
-    //console.log(response[0]["labels"])
-    //console.log(response[0]["values"])
     var layout = { margin: { t: 30, b:100 },
                    title: "Department Statistics",
                    xaxis: { title: "Department"},
@@ -46,8 +40,6 @@ Plotly.d3.json(satisfaction_url, function(error, response) {
     if (error) return console.warn(error);
     var data = [response];
     console.log(response)
-    //console.log(response[0]["labels"])
-    //console.log(response[0]["values"])
     var layout = { margin: { t: 30, b:100 },
                    title: "Department Satisfaction",
                    xaxis: { title: "Department"},
