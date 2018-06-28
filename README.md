@@ -15,7 +15,7 @@ Technologies to be used
 
 
 
-	MongoDB – for housing data, register feedback from portal
+	SQLite – for housing data, register feedback from portal
 
 	HTML5 – for front-end visualization
 
