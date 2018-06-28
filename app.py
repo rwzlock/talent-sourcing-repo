@@ -144,29 +144,100 @@ def jobsatisfaction():
     }
     return jsonify(sats_trace)
 
-@app.route('/table')
-def table():
-    Genders = db.session.query(Employees.Gender).all()
-    GenderList = [Gender[0] for Gender in Genders]
-    Departments = db.session.query(Employees.Department).all()
-    DepartmentList = [Department[0] for Department in Departments]
-    Educations = db.session.query(Employees.Education).all()
-    EducationList = [Education[0] for Education in Educations]
-    EnvironmentSatisfactions = db.session.query(Employees.EnvironmentSatisfaction).all()
-    EnvironmentSatisfactionList = [EnvironmentSatisfaction[0] for EnvironmentSatisfaction in EnvironmentSatisfactions]
-    Ages = db.session.query(Employees.Age).all()
-    AgeList = [Age[0] for Age in Ages]
+@app.route('/jobs/<jobrole>')
+def jobstatistics(jobrole):
+    """Job statistics by Job Title"""
+    job_name = jobrole.replace("_", " ")
 
-    DataDict = {
-        "Gender": GenderList,
-        "Department": DepartmentList,
-        "Education": EducationList,
-        "Satisfaction": EnvironmentSatisfactionList,
-        "Age": AgeList
+    #Query Gender based on Job Role
+    results = db.session.query(Employees.Gender).\
+        filter(Employees.JobRole==str(job_name)).\
+        filter(Employees.Gender=="Male").all()
+
+    male = [result[0] for result in results]
+    male_count = len(male)
+
+    results = db.session.query(Employees.Gender).\
+        filter(Employees.JobRole==str(job_name)).\
+        filter(Employees.Gender=="Female").all()
+
+    female = [result[0] for result in results]
+    female_count = len(female)
+    #Variables for trace
+    gender_counts = [male_count, female_count]
+    gender_labels = ["Male", "Female"]
+
+    #Query Age by job role
+    results = db.session.query(Employees.Age).\
+        filter(Employees.JobRole==str(job_name))
+    #Separate into age ranges
+    r1 = results.\
+                filter(Employees.Age>=0).\
+                filter(Employees.Age<20).all()
+    r2 = results.\
+                filter(Employees.Age>=20).\
+                filter(Employees.Age<28).all()
+    r3 = results.\
+                filter(Employees.Age>=28).\
+                filter(Employees.Age<36).all()
+    r4 = results.\
+                filter(Employees.Age>=36).\
+                filter(Employees.Age<44).all()
+    r5 = results.\
+                filter(Employees.Age>=44).\
+                filter(Employees.Age<52).all() 
+    r6 = results.\
+                filter(Employees.Age>=52).\
+                filter(Employees.Age<=60).all()
+    #Count number in each age range
+    r1_count = len([result[0] for result in r1])
+    r2_count = len([result[0] for result in r2])
+    r3_count = len([result[0] for result in r3])
+    r4_count = len([result[0] for result in r4])
+    r5_count = len([result[0] for result in r5])
+    r6_count = len([result[0] for result in r6])
+    #Create trace values
+    age_ranges = ["0-19", "20-27", "28-35", "36-43", "44-51", "52-60"]
+    range_counts = [r1_count, r2_count, r3_count, r4_count, r5_count, r6_count]
+
+    #Query Job Role by Department
+    results = db.session.query(Employees.Department).\
+        filter(Employees.JobRole==str(job_name)).all()
+    deptlist = [result[0] for result in results]
+    #List of only unique department entries
+    depts = list(set(deptlist))
+    print(len(depts))
+    #List to hold counts
+    deptcounts = []
+    for dept in depts:
+        counter = 0
+        for x in range(0, len(deptlist)):
+            if(str(deptlist[x]) == str(dept)):
+                counter=counter+1
+        deptcounts.append(counter)
+    print(len(deptcounts))
+    
+    
+    #Return dictionary with all job statistics
+    job_graphs_trace = {
+        "0": {
+            "labels":  gender_labels,
+            "values": gender_counts,
+            "type": "pie"
+        },
+        "1": {
+            "x": age_ranges,
+            "y": range_counts,
+            "type": "bar"
+        },
+        "2": {
+            "labels": depts,
+            "values": deptcounts,
+            "type": "pie"
+        }
     }
-
-    return jsonify(DataDict)
+    return jsonify(job_graphs_trace)
 
 #Run the app. debug=True is essential to be able to rerun the server any time changes are saved to the Python file
 if __name__ == "__main__":
-    app.run(debug=True, port=5021)
+    app.run(debug=True, port=5041)
