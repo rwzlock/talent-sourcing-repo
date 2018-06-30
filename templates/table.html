@@ -47,6 +47,37 @@
                 Hourly Rate Group <br> <select type="text" id="shape" style="width: 125px; color:black"> </select> <br>
                 Results Per Page <br> <select type="text" id="page" style="width: 125px; color:black"> </select> <br>
              </form>
+            <br>
+             <br>
+             <button onClick="doCsv()" style="color: rgb(66, 50, 205); background-color:rgb(243, 241, 123)" >
+              <strong> Export To CSV </strong>
+            </button>
+            <!-- <div id="link">
+              
+            </div> -->
+            <script>
+
+              function doCsv(){
+                var table = document.getElementById("myTable").innerHTML;
+                var data = table.replace(/<thead>/g, '')
+                    .replace(/<\/thead>/g, '')
+                    .replace(/<tbody>/g, '')
+                    .replace(/<\/tbody>/g, '')
+                    .replace(/<tr>/g, '')
+                    .replace(/<\/tr>/g, '\r\n')
+                    .replace(/<th>/g, '')
+                    .replace(/<\/th>/g, ';')
+                    .replace(/<td>/g, '')
+                    .replace(/<\/td>/g, ';')
+                    .replace(/\t/g, '')
+                    .replace(/\n/g, '');     
+                
+                var myLink = document.createElement('a');
+                myLink.download = "EmpData.csv";
+                myLink.href = "data:application/csv," + escape(data);
+                myLink.click();
+              }
+            </script>
           </div>
         </div>
         <!-- Table Data -->
