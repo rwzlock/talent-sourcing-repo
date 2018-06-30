@@ -7,81 +7,87 @@
     <title>Job Summary Statistics Page</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <!--<script src="app.js"></script> -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
-    <style>
-            #header{background: rgb(88,10,10);color: wheat;text-align: center}
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin=“anonymous”>
+  
+<style>
+        #header{background: rgb(88,10,10);color: wheat;text-align: center}
         
-            #pie{margin:10%;}
-         
-            #bar{ margin:10%;}   
-            
-            #bar2{ margin:10%;}
+        h1{
+                font-size:60px;
+        }
         
-            #bar3{ margin:10%;}
+        body{ font-size: 18px; font-family: 'Times New Roman', Times, serif}
         
-            #selDataset{border:solid,black;
-                margin-top: 10%;
-                margin-right: 80%}
+        .charts{
+                background: rgb(187, 184, 184);
+                        }
 
-            #navbar{
-                background:rgb(88,10,10);
-                }
+        #pie{margin:5%;}
+        
+        #bar{ margin:5%; }   
+        
+        #bar2{ margin:5%;}
+        
+        #pie2{ margin:5%; width: 40%; margin-left: 30%;margin-top: 5%}
 
-            .navbar-brand{
-                color:wheat;
-            }
-
+        #navbar{
+                        background: rgb(88,10,10);
+                        }
+        #selDataset{
+                font-family: Arial, Helvetica, sans-serif;
+                height:40px;
+                width: 300px;                
+                background: rgb(88,10,10);
+                color:white
+        }
+        
+        
         </style>
 </head>
 
 <body>
 
-            <!-- Row 1 -->
-            <div class="row">
-                    <div class="col-sm-12 " id="header">
-                      <h1>Talent Source</h1>
-                    </div>
-            </div>
+<!-- Row 1 -->
+<div class="row">
+        <div class="col-sm-12 " id="header">
+                <h1>Job Summary</h1>
+        </div>
+        </div>
 
-        <nav class="navbar navbar-default" id="navbar">
-                <div class="container-fluid">
-                  <!-- Brand and toggle get grouped for better mobile display -->
-                  <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                      <span class="sr-only">Toggle navigation</span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                    </button>
-                    <!-- <a class="navbar-brand" href="#">Talent Source</a> -->
-                  </div>
-              
-                  <!-- Collect the nav links, forms, and other content for toggling -->
-                  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                      <li class="active"><a href="/"> Main Page <span class="sr-only">(current)</span></a></li>
-                      <li class="active"><a href="/table"> Talent Search <span class="sr-only">(current)</span></a></li>
-                      <li class="active"><a href="/jobsummary"> Employee Data Map <span class="sr-only">(current)</span></a></li>
-                      
-                   </ul>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                <li class="nav-item active">
+                <a class="nav-link" href="/" style="font-size:24px;background:white;"> Summary <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="/jobsummary" style="font-size:24px;background:white;">Job Summary</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="/table" style="font-size:24px;background:white;">Find Candidates</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link disabled" href="/jobsummary" style="font-size:24px;background:white;">Talent Map</a>
+                </li>
+                </ul>
+        </div>
+        <div class="col-sm-3">
+        <!--Dropdown located at the top of the page for now-->
+        <select id="selDataset" onchange="plotGraphs(this.value)"></select>
+        <!--Div ids to plot each of the four graphs-->
+        </div>
 
-                    <ul class="nav navbar-nav navbar-right">
-            <!--Dropdown located at the top of the page for now-->
-            <select id="selDataset" onchange="plotGraphs(this.value)"></select>
-            <!--Div ids to plot each of the four graphs-->
 
-                  </div><!-- /.navbar-collapse -->
-                </div><!-- /.container-fluid -->
-              </nav>
+</nav>
 
         <!-- Row 2 -->
         <div class="row">
-                <div class="col-sm-6" >
+                <div class="col-sm-6 charts" >
                         <div id="pie"></div>
                 </div>
 
-                <div class="col-sm-6" >
+                <div class="col-sm-6 charts" >
                     <div id="bar"></div>
                 </div>
         </div>
@@ -90,7 +96,7 @@
     
             <!-- Row 3 -->
             <div class="row">
-                    <div class="col-sm-12" >
+                    <div class="col-sm-12 charts" >
                             <div id="pie2"></div>
                     </div>
 

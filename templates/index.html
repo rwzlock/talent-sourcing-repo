@@ -8,23 +8,41 @@
     <title>Talent Sourcing Homepage</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <!--<script src="app.js"></script> -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
     <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">  -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin=“anonymous”>
+  
+    <style>
+            #header{background: rgb(88,10,10);color: wheat;text-align: center}
+        
+            h1{
+              font-size:60px;
+            }
+        
+            body{ font-size: 18px; font-family: 'Times New Roman', Times, serif}
+        
+            #pie{margin:5%; }
 
-<style>
-    #header{background: rgb(88,10,10);color: wheat;text-align: center}
+            .charts{
+                background: rgb(187, 184, 184);
+                        }
+         
+            #bar{ margin:5%; }   
+            
+            #bar2{ margin:5%;}
+        
+            #bar3{ margin:5%;}
 
-    #pie{margin:10%;}
- 
-    #bar{ margin:10%; }   
-    
-    #bar2{ margin:10%;}
 
-    #bar3{ margin:10%;}
-    #navbar{
-                background: rgb(88,10,10);
-                }
-</style>
+            #navbar{
+                        background: rgb(88,10,10);
+                        }
+            /* #navbarNav{
+              background: rgb(88,10,10);
+            } */
+        
+        
+        </style>
 
 </head>
 
@@ -32,42 +50,38 @@
 
         <!-- Row 1 -->
         <div class="row">
-            <div class="col-sm-12 " id="header">
-              <h1>Talent Source</h1>
+                <div class="col-sm-12 " id="header">
+                  <h1>Talent Source</h1>
+                </div>
             </div>
-        </div>
-        <nav class="navbar navbar-default" id="navbar">
-                <div class="container-fluid">
-                  <!-- Brand and toggle get grouped for better mobile display -->
-                  <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                      <span class="sr-only">Toggle navigation</span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                    </button>
-                    <!-- <a class="navbar-brand" href="#">Talent Source</a> -->
-                  </div>
-              
-                  <!-- Collect the nav links, forms, and other content for toggling -->
-                  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                      <li class="active"><a href="/jobsummary"> Job Summary <span class="sr-only">(current)</span></a></li>
-                      <li class="active"><a href="/table"> Talent Search <span class="sr-only">(current)</span></a></li>
-                      <li class="active"><a href="/jobsummary"> Employee Data Map <span class="sr-only">(current)</span></a></li>
-                      
-                  </div><!-- /.navbar-collapse -->
-                </div><!-- /.container-fluid -->
+      
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="/" style="font-size:24px;background:white;"> Summary <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/jobsummary" style="font-size:24px;background:white;">Job Summary</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/table" style="font-size:24px;background:white;">Find Candidates</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link disabled" href="/jobsummary" style="font-size:24px;background:white;">Talent Map</a>
+                    </li>
+                  </ul>
+                </div>
               </nav>
 
 
         <!-- Row 2 -->
         <div class="row">
-                <div class="col-sm-6" >
+                <div class="col-sm-6 charts" >
                         <div id="pie"></div>
                 </div>
 
-                <div class="col-sm-6" >
+                <div class="col-sm-6 charts"  >
                     <div id="bar"></div>
                 </div>
         </div>
@@ -76,10 +90,10 @@
     
             <!-- Row 3 -->
             <div class="row">
-                    <div class="col-sm-6" >
+                    <div class="col-sm-6 charts" >
                         <div id="bar2"></div>
                     </div>
-                    <div class="col-sm-6" >
+                    <div class="col-sm-6 charts">
                         <div id="bar3"></div>
                     </div>
             </div>

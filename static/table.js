@@ -152,7 +152,7 @@ function displayData(p, rows) {
   }
   else
   {
-	   alert('Please click on Previous or Next to navigate the pages.');
+	  //  alert('Please click on Previous or Next to navigate the pages.');
      console.log('Sorry!! This is not hanlded :( Need some more time.');
      return;
   }
