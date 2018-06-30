@@ -1,0 +1,37 @@
+#header{background: rgb(88,10,10);color: wheat;text-align: center}
+
+h1{
+    font-size:60px;
+}
+
+body{ font-size: 18px; font-family: 'Times New Roman', Times, serif}
+
+#pie{margin-left: 5%;margin-right: 5%; }
+
+p{
+    margin: 5%;
+}
+.chart_header{
+    text-align: center;
+    color:rgb(88,10,10);
+    margin-top:2%;
+    
+}
+
+.charts{
+    background: rgb(187, 184, 184);
+            }
+
+#bar{ margin-left: 5%;margin-right: 5%; }   
+
+#bar2{ margin-left: 5%;margin-right: 5%; }
+
+#bar3{ margin-left: 5%;margin-right: 5%; }
+
+
+#navbar{
+            background: rgb(88,10,10);
+            }
+/* #navbarNav{
+    background: rgb(88,10,10);
+} */
