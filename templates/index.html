@@ -21,17 +21,27 @@
         
             body{ font-size: 18px; font-family: 'Times New Roman', Times, serif}
         
-            #pie{margin:5%; }
+            #pie{margin-left: 5%;margin-right: 5%; }
+            
+            p{
+              margin: 5%;
+            }
+            .chart_header{
+              text-align: center;
+              color:rgb(88,10,10);
+              margin-top:2%;
+              
+            }
 
             .charts{
                 background: rgb(187, 184, 184);
                         }
          
-            #bar{ margin:5%; }   
+            #bar{ margin-left: 5%;margin-right: 5%; }   
             
-            #bar2{ margin:5%;}
+            #bar2{ margin-left: 5%;margin-right: 5%; }
         
-            #bar3{ margin:5%;}
+            #bar3{ margin-left: 5%;margin-right: 5%; }
 
 
             #navbar{
@@ -78,24 +88,59 @@
         <!-- Row 2 -->
         <div class="row">
                 <div class="col-sm-6 charts" >
+                    <h2 class="chart_header">Gender Statistic</h2>
+                    <div class="main_box_content">
                         <div id="pie"></div>
+                        <p class="first_p_in_summary"> In our company total employee count is  
+                            1470. Amount of Female employee is 588 and Amount of male employee is 882 </p>
+
+                    </div>
                 </div>
 
-                <div class="col-sm-6 charts"  >
-                    <div id="bar"></div>
+                <div class="col-sm-6 charts" >
+                    <h2 class="chart_header">Job Role Statistic</h2>
+                    <div class="main_box_content">
+                        <div id="bar"></div>
+                        <p class="first_p_in_summary"> Job roles in our company are 
+                            Healthcare representative, Manufacturing Director.. </p>
+                    </div>
                 </div>
+
+                <!-- <div class="col-sm-6 charts"  >
+                    <div id="bar"></div>
+                </div> -->
         </div>
 
     <!--Div ids to plot each of the four graphs-->
     
             <!-- Row 3 -->
             <div class="row">
-                    <div class="col-sm-6 charts" >
+
+                <div class="col-sm-6 charts" >
+                    <h2 class="chart_header">Department Statistic</h2>
+                    <div class="main_box_content">
                         <div id="bar2"></div>
+                        <p class="first_p_in_summary"> Departments in our company are 
+                            Sales, Human Resources and Research and Developments..  </p>
                     </div>
-                    <div class="col-sm-6 charts">
+                </div>
+
+                    <!-- <div class="col-sm-6 charts" >
+                        <div id="bar2"></div>
+                    </div> -->
+
+                <div class="col-sm-6 charts" >
+                    <h2 class="chart_header">Department Satisfaction</h2>
+                    <div class="main_box_content">
                         <div id="bar3"></div>
+                        <p class="first_p_in_summary"> Departments in our company are 
+                            Sales, Human Resources and Research and Developments.... </p>
                     </div>
+                </div>
+
+                    <!-- <div class="col-sm-6 charts">
+                        <div id="bar3"></div>
+                    </div> -->
             </div>
 
     <!--<select id="selDataset" onchange="getData(this.value)"></select> -->
