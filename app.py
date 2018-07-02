@@ -252,4 +252,4 @@ def jobstatistics(jobrole):
 
 #Run the app. debug=True is essential to be able to rerun the server any time changes are saved to the Python file
 if __name__ == "__main__":
-    app.run(debug=True, port=5012)
+    app.run(debug=True, port=5020)
